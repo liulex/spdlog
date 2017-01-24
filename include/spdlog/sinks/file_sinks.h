@@ -103,7 +103,7 @@ private:
         else
             w.write(SPDLOG_FILENAME_T("{}"), filename);
         if (!extension.empty())
-            w.write(SPDLOG_FILENAME_T(".{}"), extension);
+            w.write(SPDLOG_FILENAME_T("_{}"), extension);
         return w.str();
     }
 
