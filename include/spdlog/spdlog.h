@@ -76,8 +76,8 @@ std::shared_ptr<logger> basic_logger_st(const std::string& logger_name, const fi
 //
 // Create and register multi/single threaded rotating file logger
 //
-std::shared_ptr<logger> rotating_logger_mt(const std::string& logger_name, const filename_t& filename, size_t max_file_size, size_t max_files);
-std::shared_ptr<logger> rotating_logger_st(const std::string& logger_name, const filename_t& filename, size_t max_file_size, size_t max_files);
+std::shared_ptr<logger> rotating_logger_mt(const std::string& logger_name, const filename_t& filename, const filename_t& extension, size_t max_file_size, size_t max_files);
+std::shared_ptr<logger> rotating_logger_st(const std::string& logger_name, const filename_t& filename, const filename_t& extension, size_t max_file_size, size_t max_files);
 
 //
 // Create file logger which creates new file on the given time (default in  midnight):

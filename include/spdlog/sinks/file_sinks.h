@@ -99,9 +99,11 @@ private:
     {
         std::conditional<std::is_same<filename_t::value_type, char>::value, fmt::MemoryWriter, fmt::WMemoryWriter>::type w;
         if (index)
-            w.write(SPDLOG_FILENAME_T("{}.{}.{}"), filename, index, extension);
+            w.write(SPDLOG_FILENAME_T("{}.{}"), filename, index);
         else
-            w.write(SPDLOG_FILENAME_T("{}.{}"), filename, extension);
+            w.write(SPDLOG_FILENAME_T("{}"), filename);
+        if (!extension.empty())
+            w.write(SPDLOG_FILENAME_T(".{}"), extension);
         return w.str();
     }
 
