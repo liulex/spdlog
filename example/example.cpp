@@ -31,8 +31,6 @@ int main(int, char*[])
         console->info("Welcome to spdlog!");
         console->error("Some error message with arg{}..", 1);
 
-        // Conditional logging example
-        console->info_if(true, "Welcome to spdlog conditional logging!");
 
         // Formatting examples
         console->warn("Easy padding in numbers like {:08d}", 12);
@@ -41,23 +39,20 @@ int main(int, char*[])
         console->info("Positional args are {1} {0}..", "too", "supported");
         console->info("{:<30}", "left aligned");
 
-        SPDLOG_DEBUG_IF(console, true, "This is a debug log");
-
-
         spd::get("console")->info("loggers can be retrieved from a global registry using the spdlog::get(logger_name) function");
 
 
         // Create basic file logger (not rotated)
-        auto my_logger = spd::basic_logger_mt("basic_logger", "logs/basic");
+        auto my_logger = spd::basic_logger_mt("basic_logger", "logs/basic-log.txt");
         my_logger->info("Some log message");
 
         // Create a file rotating logger with 5mb size max and 3 rotated files
-        auto rotating_logger = spd::rotating_logger_mt("some_logger_name", "logs/mylogfile", 1048576 * 5, 3);
+        auto rotating_logger = spd::rotating_logger_mt("some_logger_name", "logs/rotating.txt", 1048576 * 5, 3);
         for (int i = 0; i < 10; ++i)
             rotating_logger->info("{} * {} equals {:>10}", i, i, i*i);
 
         // Create a daily logger - a new file is created every day on 2:30am
-        auto daily_logger = spd::daily_logger_mt("daily_logger", "logs/daily", 2, 30);
+        auto daily_logger = spd::daily_logger_mt("daily_logger", "logs/daily.txt", 2, 30);
         // trigger flush if the log severity is error or higher
         daily_logger->flush_on(spd::level::err);
         daily_logger->info(123.44);
@@ -77,7 +72,6 @@ int main(int, char*[])
         // define SPDLOG_DEBUG_ON or SPDLOG_TRACE_ON
         SPDLOG_TRACE(console, "Enabled only #ifdef SPDLOG_TRACE_ON..{} ,{}", 1, 3.23);
         SPDLOG_DEBUG(console, "Enabled only #ifdef SPDLOG_DEBUG_ON.. {} ,{}", 1, 3.23);
-        SPDLOG_DEBUG_IF(console, true, "This is a debug log");
 
 
         // Asynchronous logging is very fast..
@@ -117,8 +111,7 @@ void async_example()
 {
     size_t q_size = 4096; //queue size must be power of 2
     spdlog::set_async_mode(q_size);
-    auto async_file = spd::daily_logger_st("async_file_logger", "logs/async_log");
-
+    auto async_file = spd::daily_logger_st("async_file_logger", "logs/async_log.txt");
     for (int i = 0; i < 100; ++i)
         async_file->info("Async message #{}", i);
 }
