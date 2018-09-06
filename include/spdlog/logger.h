@@ -117,6 +117,7 @@ public:
     void flush_on(level::level_enum log_level);
 
     virtual void flush();
+    virtual void clear();
 
     const std::vector<sink_ptr> &sinks() const;
 

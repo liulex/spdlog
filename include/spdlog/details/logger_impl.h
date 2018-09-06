@@ -317,6 +317,16 @@ inline void spdlog::logger::flush()
     SPDLOG_CATCH_AND_HANDLE
 }
 
+inline void spdlog::logger::clear()
+{
+    try
+    {
+        for (auto& sink : _sinks)
+            sink->clear();
+    }
+    SPDLOG_CATCH_AND_HANDLE
+}
+
 inline void spdlog::logger::_default_err_handler(const std::string &msg)
 {
     auto now = time(nullptr);

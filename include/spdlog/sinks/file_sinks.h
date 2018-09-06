@@ -53,6 +53,11 @@ protected:
         _file_helper.flush();
     }
 
+    void clear() override
+    {
+        _file_helper.reopen(true);
+    }
+
 private:
     details::file_helper _file_helper;
     bool _force_flush;
@@ -110,6 +115,11 @@ protected:
     void _flush() override
     {
         _file_helper.flush();
+    }
+
+    void clear() override
+    {
+        _file_helper.reopen(true);
     }
 
 private:
@@ -222,6 +232,11 @@ protected:
     void _flush() override
     {
         _file_helper.flush();
+    }
+
+    void clear() override
+    {
+        _file_helper.reopen(true);
     }
 
 private:
