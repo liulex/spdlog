@@ -26,6 +26,11 @@ public:
     static filename_t calc_filename(const filename_t &filename, std::size_t index);
     filename_t filename();
 
+    void clear() override
+    {
+        file_helper_.reopen(true);
+    }
+
 protected:
     void sink_it_(const details::log_msg &msg) override;
     void flush_() override;

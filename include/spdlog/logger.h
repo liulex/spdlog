@@ -305,6 +305,9 @@ public:
     void flush_on(level::level_enum log_level);
     level::level_enum flush_level() const;
 
+    // clear log content
+    void clear();
+
     // sinks
     const std::vector<sink_ptr> &sinks() const;
 

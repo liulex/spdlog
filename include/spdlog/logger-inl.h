@@ -137,6 +137,19 @@ SPDLOG_INLINE level::level_enum logger::flush_level() const
     return static_cast<level::level_enum>(flush_level_.load(std::memory_order_relaxed));
 }
 
+// clear log content
+SPDLOG_INLINE void logger::clear()
+{
+    for (auto &sink : sinks_)
+    {
+        SPDLOG_TRY
+        {
+            sink->clear();
+        }
+        SPDLOG_LOGGER_CATCH()
+    }
+}
+
 // sinks
 SPDLOG_INLINE const std::vector<sink_ptr> &logger::sinks() const
 {

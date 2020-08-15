@@ -23,6 +23,11 @@ public:
     explicit basic_file_sink(const filename_t &filename, bool truncate = false);
     const filename_t &filename() const;
 
+    void clear() override
+    {
+        file_helper_.reopen(true);
+    }
+
 protected:
     void sink_it_(const details::log_msg &msg) override;
     void flush_() override;

@@ -76,6 +76,11 @@ public:
         return file_helper_.filename();
     }
 
+    void clear() override
+    {
+        file_helper_.reopen(true);
+    }
+
 protected:
     void sink_it_(const details::log_msg &msg) override
     {
