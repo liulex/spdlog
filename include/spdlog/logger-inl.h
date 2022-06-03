@@ -146,7 +146,7 @@ SPDLOG_INLINE void logger::clear()
         {
             sink->clear();
         }
-        SPDLOG_LOGGER_CATCH()
+        SPDLOG_LOGGER_CATCH(source_loc())
     }
 }
 
