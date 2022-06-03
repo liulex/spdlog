@@ -32,5 +32,5 @@ protected:
 } // namespace spdlog
 
 #ifdef SPDLOG_HEADER_ONLY
-#include "sink-inl.h"
+#    include "sink-inl.h"
 #endif
